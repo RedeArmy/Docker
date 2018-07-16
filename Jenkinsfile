@@ -8,7 +8,7 @@ node {
         }
         stage ('Build') {
 		sh "docker-compose build"
-		sh "docker-compose up" 
+		sh "docker-compose up -d" 
         }
         stage ('Tests') {
 	        parallel 'static': {
