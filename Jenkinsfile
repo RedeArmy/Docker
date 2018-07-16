@@ -8,7 +8,7 @@ node {
         }
         stage ('Build') {
 		sh "docker-compose build"
-		sh "docker-compose up --build -d" 
+		sh "docker-compose up -d" 
         }
         stage ('Tests') {
 	        sh "chmod +x test.sh"
