@@ -11,7 +11,7 @@ node {
 		sh "docker-compose up -d" 
         }
         stage ('Tests') {
-	        sh " sudo chmod +x test.sh"
+	        sh "chmod +x test.sh"
 	        sh " ./test.sh"
         }
 	stage ('Push') {
