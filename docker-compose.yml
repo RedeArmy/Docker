@@ -1,0 +1,87 @@
+version: '3.5'
+services:
+  #Nginx
+  nginx:
+    build: Nginx-docker/.
+    image: load-balance-nginx
+    links:
+        - node1:node1
+        - node2:node2
+    ports:
+     - "8080:80"
+    container_name: redenginx
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
+    depends_on:
+      - node1
+      - node2
+    networks:
+      - web-net
+  #Nodejs 
+  #Nodo 1
+  node1:
+    build: Rede-nodo/.
+    image: load-balanced-app
+    ports: 
+     - "8081:8080"
+    environment:
+     - VAR=server1
+    container_name: redewebser
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
+    depends_on:
+      - redis
+    networks:
+      - redis-net
+      - web-net
+    volumes:
+      - './Rede-nodo:/usr/src/app'
+    tty: true
+  node2:
+    build: Rede-nodo/.
+    image: load-balanced-app
+    ports:
+     - "8082:8080"
+    environment:
+     - VAR=server2
+    container_name: redewebser1
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
+    depends_on:
+      - redis
+    networks:
+      - redis-net
+      - web-net
+    volumes:
+      - './Rede-nodo:/usr/src/app'
+  #Redis
+  redis:
+    image: redis:latest
+    container_name: redeis
+    ports:
+        - "6379:6379"
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+networks:
+  redis-net:
+  web-net: 
+volumes:
+  redis-data:
+
+
