@@ -11,10 +11,8 @@ node {
 		sh "docker-compose up -d" 
         }
         stage ('Tests') {
-	        steps{
-	            sh " sudo chmod +x test.sh"
-		    sh " ./test.sh"
-		}
+	        sh " sudo chmod +x test.sh"
+	        sh " ./test.sh"
         }
 	stage ('Push') {
 		sh '$(aws ecr get-login --no-include-email --region us-east-1)'
