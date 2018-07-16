@@ -11,15 +11,10 @@ node {
 		sh "docker-compose up -d" 
         }
         stage ('Tests') {
-	        parallel 'static': {
-	            sh "echo 'shell scripts to run static tests...'"
-	        },
-	        'unit': {
-	            sh "echo 'shell scripts to run unit tests...'"
-	        },
-	        'integration': {
-	            sh "echo 'shell scripts to run integration tests...'"
-	        }
+	        steps{
+	            sh " sudo chmod +x test.sh"
+		    sh " ./test.sh"
+		}
         }
 	stage ('Push') {
 		sh '$(aws ecr get-login --no-include-email --region us-east-1)'
