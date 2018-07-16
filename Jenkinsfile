@@ -9,7 +9,6 @@ node {
         stage ('Build') {
 		sh "docker-compose build"
 		sh "docker-compose up" 
-		sh "docker tag rede-webserv:latest 797409686075.dkr.ecr.us-east-1.amazonaws.com/rede-webserv:latest"
         }
         stage ('Tests') {
 	        parallel 'static': {
