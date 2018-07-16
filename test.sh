@@ -1,5 +1,5 @@
 sleep 5
-if curl https://localhost/users | grep -q '<b>Visits:</b> '; then
+if curl nginx | grep -q '<b>Visits:</b> '; then
   echo "Tests passed!"
   exit 0
 else
