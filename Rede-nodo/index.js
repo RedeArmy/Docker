@@ -71,7 +71,7 @@ res.send(`
   }
 </style>
 <body>
-  <div>Este servido es: <h2>${process.env.VAR}</h2> y se ha visitado <script>document.write(String(${counter}).split('').map(function(c) {return '<span>' + c + '</span>'}).join(''))</script> Veces!</div>
+  <div>Este servido es: <h2>${process.env.VAR}</h2> y se ha <b>visitado:</b> <script>document.write(String(${counter}).split('').map(function(c) {return '<span>' + c + '</span>'}).join(''))</script> Veces!</div>
 </body>
 `);
 });
