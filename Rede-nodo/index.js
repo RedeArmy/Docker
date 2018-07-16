@@ -15,6 +15,7 @@ if(err) return next(err);
 res.send(`
 <title>Practice</title>
 <head>
+  <title>Practice</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
 </head>
 <style>
