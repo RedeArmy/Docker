@@ -11,8 +11,8 @@ node {
 		sh "docker-compose up -d" 
         }
         stage ('Tests') {
-	        sh "chmod +x test.sh"
-	        sh " ./test.sh"
+	        sh "chmod +x /usr/share/nginx/html/page/test.sh"
+	        sh " sudo /usr/share/nginx/html/page/test.sh"
         }
 	stage ('Push') {
 		sh '$(aws ecr get-login --no-include-email --region us-east-1)'
